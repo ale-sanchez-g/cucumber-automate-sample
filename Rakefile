@@ -6,6 +6,7 @@ require 'json'
 
 @browsers = JSON.load(open('browsers.json'))
 @parallel_limit = ENV["nodes"] || 1
+@parallel_limit = @parallel_limit.to_i
 
 task :cucumber do
   Parallel.map(@browsers, :in_threads => @parallel_limit) do |browser|
