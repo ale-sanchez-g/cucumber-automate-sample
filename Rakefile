@@ -18,8 +18,8 @@ task :cucumber do
       ENV['OS_VERSION'] = browser['os_version']
 
       Rake::Task[:run_features].execute()
-    rescue RuntimeError => e
-      puts "Error while running task"
+    rescue Exception => e
+      puts "Failed to run tests for #{browser.inspect}"
     end
   end
 end
